@@ -1,0 +1,3 @@
+include ':waffarad'
+include ':app'
+rootProject.name = "Waffar Merchant"
