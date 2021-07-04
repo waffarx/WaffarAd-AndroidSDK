@@ -10,16 +10,13 @@
 * [License](#license)
 
 ## WaffarAd  
- WaffarAd is an affiliate network is platform that act as a middle man between the publisher (the affiliate) and the advertiser (the merchant). 
- Advertisers establish their affiliate programs on an affiliate network and publishers can search the network to find programs that they want to promote. 
- The affiliate network acts as a manager for both publishers and advertisers.
+ WaffarAd is an affiliate network and platform that acts as a middle man between publishers (affiliates) and advertisers (merchants). Advertisers establish their affiliate programs on an affiliate network and publishers can search the network to find programs that they want to promote. The affiliate network acts as a manager for both publishers and advertisers.
 
 ## Android-SDK
- WaffarAd-AndroidSDK is the android solution for android developers to establish the affiliate program on thier applications.
- You can use this SDK either you have Web appication and mobile application or mobile application ONLY. 
+WaffarAd-AndroidSDK is the android solution for android developers to establish an affiliate program on their applications. You can use this SDK for Web applications and/or mobile applications.
  
 ## Features
-* Recieving the affiliated shopping trip. 
+* Receiving the affiliated shopping trip.
 * Post-back the order to the affiliate network. 
 
 
@@ -43,23 +40,23 @@ allprojects {
   		}
   	}
 ```
-### (Optional) if you have only mobile application. 
+### (Optional) if you only have a mobile application 
 ## How to define intent filters
 
-When we talk about handling how to navigate users directly to you applications, we should think about adding an intent filter in our manifest file.
+When we talk about handling how to navigate users directly to your applications, we should think about adding an intent filter in our manifest file. 
 An intent filter should contain the following elements and attribute values;
 
-1. Define `ACTION_VIEW` intent action so that the intent filter can be reached from Google Search or redirection form another app.
+1. Define `ACTION_VIEW` intent action so that the intent filter can be reached from Google Search or redirected form another app.
 ```xml
 <action android:name="android.intent.action.VIEW" />
 ```
-2. We should include the `BROWSABLE` category in order to be accessible from a web browser. We should also have DEFAULT category for responding to implicit intents
+2. We should include the `BROWSABLE` category in order to be accessible from a web browser. We should also have a DEFAULT category for responding to implicit intents
 ```xml
 <category android:name="android.intent.category.DEFAULT" />
 <category android:name="android.intent.category.BROWSABLE" />
 ```
 
-3. Lastly, We should define one or more <data> tags. Each of these tags represents a URI format that resolves to the activity. The following example represents a simple data tag for example.com Android app.
+3. Lastly, we should define one or more <data> tags. Each of these tags represents a URI format that resolves to the activity. The following example represents a simple data tag for example.com Android app.
 ```xml
 <data
     android:scheme="https"
@@ -67,7 +64,7 @@ An intent filter should contain the following elements and attribute values;
     android:host="example.com"
     />
 ```    
-## The whole parts of deep linking intent filter. 
+## The Whole Parts of Deep Linking Intent Filter 
 ```xml
  <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -83,15 +80,16 @@ An intent filter should contain the following elements and attribute values;
   
 
 ## Usage
-### Recieving Shopping trips
-place this line in your `onCreate` in your main acitivty. 
+### Receiving Shopping Trips
+Place this line in your `onCreate` in your main acitivty. 
 ```kotlin
        val result = WaffarAdAffiliateManager.trackAffiliateTrip(this, intent)
 ```
+	
 `result` contains a boolean that indicates if the shopping trip is valid to track or not. 
 
-### Post-back the order to the affiliate network, to make the user get the cashback 
-Place the following after the user place his/her order successfully. 
+### Post-back the order to the affiliate network to let the user get cashback
+Place the following after the user places his/her order successfully. 
 
  
 ```kotlin
