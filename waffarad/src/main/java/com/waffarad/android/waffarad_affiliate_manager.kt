@@ -1,12 +1,13 @@
 package com.waffarad.android
 
+import Order
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 
 object WaffarAdAffiliateManager {
-
+    val monthDuration :Int = 2592000 ;
     init {
         println("Singleton class invoked.")
     }
@@ -35,7 +36,7 @@ object WaffarAdAffiliateManager {
     }
 
 
-    fun postbackAffiliateOrder(context: Context,body: Any? ,  waffarAdPostBack: WaffarAdPostBack):Boolean{
+    fun postbackAffiliateOrder(context: Context,order: Order  , waffarAdPostBack: WaffarAdPostBack):Boolean{
         val waffarAdLocalStorageManager = WaffarAdLocalStorageManager(context)
         val savingTime = waffarAdLocalStorageManager.getShoppingTripTime()
         val data = waffarAdLocalStorageManager.retrieveAffiliateTripParams()
@@ -44,12 +45,13 @@ object WaffarAdAffiliateManager {
             return false
         }
         // make sure that the time in this month
-        if( diff / 1000 <= 30 * 60 * 60 * 24 ){
-            //Todo call API
-           val params=  waffarAdLocalStorageManager.retrieveAffiliateTripParams()
+        if( diff / 1000 <= monthDuration ){
+            val params=  waffarAdLocalStorageManager.retrieveAffiliateTripParams()
             val af_id: String? = params?.get(waffarAdLocalStorageManager.AFID);
             val sub_id = params?.get(waffarAdLocalStorageManager.SUBID);
-            WaffarAdAPIManager.postback(af_id,sub_id,body,waffarAdPostBack)
+            order.af_id = af_id
+            order.subid = sub_id
+            WaffarAdAPIManager.postback(af_id,sub_id,order,waffarAdPostBack)
             return true
         }
         else{
@@ -59,7 +61,17 @@ object WaffarAdAffiliateManager {
 
 
     }
-    fun _postbackShoppingTrip(){
 
+    fun isAffiliateOrder(context: Context): Boolean{
+        val waffarAdLocalStorageManager = WaffarAdLocalStorageManager(context)
+        val savingTime = waffarAdLocalStorageManager.getShoppingTripTime()
+        val data = waffarAdLocalStorageManager.retrieveAffiliateTripParams()
+        val diff :Long = System.currentTimeMillis() - savingTime
+        if( data == null){
+            return false
+        }
+        if( diff / 1000 > monthDuration )
+            return false
+        return true
     }
 }

@@ -16,10 +16,10 @@ class WaffarAdLocalStorageManager(_context: Context) {
     val sharedPreferences: SharedPreferences = context.getSharedPreferences("WAFFARAD_LOCAL_STORAGE", Context.MODE_PRIVATE)
 
     fun  validParams(uri: Uri?): Boolean{
-        return  (uri?.getQueryParameter(AFID)!=null) &&(uri.getQueryParameter(SUBID)!=null)
+        return  (uri?.getQueryParameter(AFID)!=null) //&&(uri.getQueryParameter(SUBID)!=null)
     }
     fun  validExtras(bundle: Bundle?): Boolean{
-        return  (bundle?.get(AFID)!=null) &&(bundle.get(SUBID)!=null)
+        return  (bundle?.get(AFID)!=null)// &&(bundle.get(SUBID)!=null)
     }
     fun saveAffiliateTripParams(uri:Uri?){
         val editor: SharedPreferences.Editor =  sharedPreferences.edit()
@@ -41,7 +41,8 @@ class WaffarAdLocalStorageManager(_context: Context) {
     fun retrieveAffiliateTripParams() :Map<String, String>? {
         val Af_id: String? =  sharedPreferences.getString(AFID, null)
         val subId: String? =  sharedPreferences.getString(SUBID, null)
-        if(Af_id == null ||subId == null)
+        if(Af_id == null //||subId == null
+        )
             return null
         return  mapOf(AFID to "$Af_id", SUBID to "$subId")
     }

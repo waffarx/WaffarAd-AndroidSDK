@@ -2,8 +2,8 @@ package com.waffarad.android
 
 
 data class ShoppingTrip(
-    val userId: Int,
+    val userId: Int ,
     val id: Int,
-    val title:String,
-    val body: String
+    val title:String= "asd",
+    val body: String= "asd"
 )

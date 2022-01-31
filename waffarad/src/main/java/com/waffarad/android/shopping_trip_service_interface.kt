@@ -1,6 +1,7 @@
 package com.waffarad.android
 
 
+import Order
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -15,7 +16,7 @@ interface ShoppingTripServiceInterface {
     fun postbackShoppingTrip(
         @Query("af_id") affiliateId: String?,
         @Query("subid") subId: String?,
-        @Body() body: Any?
+        @Body() order: Order
     ): Call<Any>
 
 }
