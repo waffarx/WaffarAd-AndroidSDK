@@ -28,7 +28,7 @@ Add the library dependency in your app-level build.gradle file
 ```gradle
 dependencies {
               ...
-     implementation 'com.github.waffarx:WaffarAd-AndroidSDK:1.0'
+     implementation 'com.github.waffarx:WaffarAd-AndroidSDK:1.1'
 }
 ```
 Add jitpack.io to your project-level build.gradle file  :
