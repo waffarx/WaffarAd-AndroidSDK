@@ -50,12 +50,12 @@ class MainActivity : AppCompatActivity() {
                 isTaxable = true,
                 salePrice = 12.55,
 
-                extendedSalePrice = 122.3,
+
                 imageUrl = "sadasd",
                 discount =  12.4,
                 listPrice = 12.4,
 
-                extendedListPrice = 234.23,
+
 
 
                 categories = listOf("Categ")
