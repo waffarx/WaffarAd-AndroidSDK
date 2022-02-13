@@ -94,7 +94,7 @@ class MainActivity : AppCompatActivity() {
         Toast.makeText(this, "Mustafa Gasd asdasd amal:" + res.toString(), Toast.LENGTH_SHORT)
             .show()
         if (res) {
-
+            if(WaffarAdAffiliateManager.isAffiliateOrder(this))
             WaffarAdAffiliateManager.postbackAffiliateOrder(
                 this,
                 order,

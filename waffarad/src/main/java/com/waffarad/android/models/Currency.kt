@@ -1,7 +1,7 @@
 package com.waffarad.android.models
 
 /**
- * Currency is the applied coupon in order.
+ * Currency is the order's currency.
  * @property name Currency name.
  * @property code Currency iso code.
  * @property symbol Currency symbol.
