@@ -44,7 +44,7 @@ allprojects {
 ## How to define intent filters
 
 When we talk about handling how to navigate users directly to your applications, we should think about adding an intent filter in our manifest file. 
-An intent filter should contain the following elements and attribute values;
+An intent filter should contain the following elements and attribute values:
 
 1. Define `ACTION_VIEW` intent action so that the intent filter can be reached from Google Search or redirected form another app.
 ```xml
@@ -58,26 +58,24 @@ An intent filter should contain the following elements and attribute values;
 
 3. Lastly, we should define one or more <data> tags. Each of these tags represents a URI format that resolves to the activity. The following example represents a simple data tag for example.com Android app.
 ```xml
-<data
-    android:scheme="https"
-    
-    android:host="example.com"
-    />
+      <data android:scheme="http" />
+      <data android:scheme="https" />
+      <data android:host="www.example.com" />
 ```    
 ## The Whole Parts of Deep Linking Intent Filter 
 ```xml
- <intent-filter>
+ <intent-filter android:autoVerify="true" >
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data
-                    android:scheme="https"
-                    android:host="example.com"
-                      />
+                 <data android:scheme="http" />
+     		 <data android:scheme="https" />
+    	         <data android:host="www.example.com" />
    </intent-filter>
 ```
- 
-  
+[Set up Android App Links on Android 12](https://developer.android.com/training/app-links#android-app-links)
+	
+[Verify site associations](https://developer.android.com/training/app-links/verify-site-associations)
 
 ## Usage
 ### Receiving Shopping Trips
@@ -120,29 +118,29 @@ An intent filter should contain the following elements and attribute values;
 #### @properties
 | Name | Type           | Description                            |
 |-----------|----------------|----------------------------------------|
-| `orderId`  | Int   | Order id.                      |
+| `orderId`  | Int   | Order ID                      |
 | `orderName`| String | Flag if request processed successfully |
-| `currencyCode`|  String | Order currency code like(EGP, US). |
-| `baseAmount` | Double| Net order after excluding discount, tax, and shipping.|
+| `currencyCode`|  String | Order currency code like(EGP, US) |
+| `baseAmount` | Double| Net order after excluding discount, tax, and shipping|
 | `orderAmount`| Double | Total order amount|
-| `discountAmount`| Double |Total discount in order|
+| `discountAmount`| Double |Total discount on order|
 | `orderAmountAsInteger`| Int | Total order *100 example: if orderAmount = 100.5 then orderAmountAsInteger = 10050|
 | `shippingCostTotal` | Int| Total shipping on order |
-| `shippingCostBeforeDiscount`| Double | Total shipping on order excluding the discount.|
-| `taxes`| List<[Tax](#tax-object)>? | List of taxes applied on order.|
+| `shippingCostBeforeDiscount`| Double | Total shipping on order excluding the discount|
+| `taxes`| List<[Tax](#tax-object)>? | List of taxes applied on order|
 | `totalTaxes`| Double? | Total of taxes on order  |
-| `merchant_name`| String?  | Your Company name. |
-| `cartId`| String?| Cart id.|
-| `currency`| [Currency](#currency-object)?  | Currency details.|
-| `isTaxIncluded`| Boolean | Flag if order total including taxes or not|
-| `coupons`| List<[Coupon](#coupon-object)>? | List of coupons applied on order. |
-| `products`| List<[Product](#product-object)>?| List of order products. |
-| `customerId`| String? | Customer Id. |
-| `billingAddress`| [BillingAddress](#billingaddress-object)? | User billing address. |
+| `merchant_name`| String?  | Your Company name |
+| `cartId`| String?| Cart ID|
+| `currency`| [Currency](#currency-object)?  | Currency details|
+| `isTaxIncluded`| Boolean | Flag if order total includes taxes or not|
+| `coupons`| List<[Coupon](#coupon-object)>? | List of coupons applied on order |
+| `products`| List<[Product](#product-object)>?| List of order products |
+| `customerId`| String? | Customer ID |
+| `billingAddress`| [BillingAddress](#billingaddress-object)? | User billing address |
 | `status`| String? | Current order status like(Pending, Processing) |
-| `existingCustomer`| Boolean|Flag if the customer is new customer who has on orders before.|
-| `current_page_url`| String?|Thank you or confirmed page url.|
-| `base_url`| String?| Company website url.|
+| `existingCustomer`| Boolean| Flag if a customer is a new customer who has placed an order before|
+| `current_page_url`| String?|Thank you or confirmed page url|
+| `base_url`| String?| Company website url|
  
 ### Product Object 
 > **Product is the total tax on order total.**
@@ -150,17 +148,17 @@ An intent filter should contain the following elements and attribute values;
 #### @properties
 | Name | Type           | Description                            |
 |-----------|----------------|----------------------------------------|
-| `productId`  | Int   |Product Id.|
-| `name`| String | Product name.|
-| `quantity`  | Int   |Quantity of product in the order.|
-| `discount`  | Double |Total discount of total quantity.|
-| `salePrice`  | Double   |Price after sale.|
-| `listPrice`  | Double  |Original price.|
-| `url`  | String   |Product Url.|
-| `sku`  | String  |Product sku.|
-| `isTaxable`  | Boolean   |Flag if the product include taxes.|
-| `imageUrl`  | String |Product image in website.|
-| `categories`  | List<String>?  |List of product category names.|
+| `productId`  | Int   |Product ID|
+| `name`| String | Product name|
+| `quantity`  | Int   |Quantity of product in the order|
+| `discount`  | Double |Total discount of total quantity|
+| `salePrice`  | Double   |Price after sale|
+| `listPrice`  | Double  |Original price|
+| `url`  | String   |Product URL|
+| `sku`  | String  |Product SKU|
+| `isTaxable`  | Boolean   |Flag if the product includes taxes|
+| `imageUrl`  | String |Product image in website|
+| `categories`  | List<String>?  |List of product category names|
 	
 ### Tax Object 
  
@@ -168,8 +166,8 @@ An intent filter should contain the following elements and attribute values;
 #### @properties
 | Name | Type           | Description                            |
 |-----------|----------------|----------------------------------------|
-| `name`  | String   |Order tax.  |
-| `amount`| Double | Order tax amount.|
+| `name`  | String   |Order tax |
+| `amount`| Double | Order tax amount|
  
 
 ### Coupon Object 
@@ -178,10 +176,10 @@ An intent filter should contain the following elements and attribute values;
 #### @properties
 | Name | Type           | Description                            |
 |-----------|----------------|----------------------------------------|
-| `id`  | Int   |Coupon id.|
-| `code`| String | coupon code.|
-| `discountedAmount`  | Double   |Discounted amount in total order.|
-| `displayedName`| String | Coupon display name.|
+| `id`  | Int   |Coupon ID|
+| `code`| String | coupon code|
+| `discountedAmount`  | Double   |Discounted amount on total order|
+| `displayedName`| String | Coupon display name|
  
 	
 ### Currency Object 
@@ -189,9 +187,9 @@ An intent filter should contain the following elements and attribute values;
 #### @properties
 | Name | Type           | Description                            |
 |-----------|----------------|----------------------------------------|
-| `name`  | String   |Currency name.|
-| `code`| String | Currency code.|
-| `symbol`  | String   |Currency symbol.|
+| `name`  | String   |Currency name|
+| `code`| String | Currency code|
+| `symbol`  | String   |Currency symbol|
  
  	
 	 
@@ -200,19 +198,19 @@ An intent filter should contain the following elements and attribute values;
 #### @properties
 | Name | Type           | Description                            |
 |-----------|----------------|----------------------------------------|
-| `firstName`  | String   |User first name.|
-| `lastName`| String | User last name,|
-| `email`  | String   |User email.|
-| `phone`  | String |User phone.|
-| `company`  | String   |User company.|
-| `address1`  | String  |User address.|
-| `address2`  | String   |Another user address.|
-| `city`  | String  |User city.|
-| `stateOrProvince`  | String   |User state or province.|
-| `stateOrProvinceCode`  | String |User state or province code.|
-| `country`  | String  |User country.|
-| `countryCode`  | String |User country code.|
-| `postalCode`  | String  |User postal code.|
+| `firstName`  | String   |User first name|
+| `lastName`| String | User last name|
+| `email`  | String   |User email|
+| `phone`  | String |User phone|
+| `company`  | String   |User company|
+| `address1`  | String  |User address|
+| `address2`  | String   |Another user address|
+| `city`  | String  |User city|
+| `stateOrProvince`  | String   |User state or province|
+| `stateOrProvinceCode`  | String |User state or province code|
+| `country`  | String  |User country|
+| `countryCode`  | String |User country code|
+| `postalCode`  | String  |User postal code|
 
 
 ## Notes
